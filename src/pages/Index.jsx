@@ -22,8 +22,7 @@ const Index = () => {
   ) || [];
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">Hacker News Top 100</h1>
+    <div className="container mx-auto px-4 py-4">
       <div className="flex mb-4">
         <Input
           type="text"
