@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { Search } from 'lucide-react';
+import { Search, Terminal } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import StoryList from '../components/StoryList';
@@ -22,21 +22,25 @@ const Index = () => {
   ) || [];
 
   return (
-    <div className="container mx-auto px-4 py-4">
-      <div className="flex mb-4">
+    <div className="container mx-auto px-4 py-8 bg-background text-foreground">
+      <h1 className="text-3xl font-bold mb-6 flex items-center">
+        <Terminal className="mr-2 text-accent" />
+        <span className="font-mono">Hacker News Top 100</span>
+      </h1>
+      <div className="flex mb-6">
         <Input
           type="text"
-          placeholder="Search stories..."
+          placeholder="Hack the search..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="mr-2"
+          className="mr-2 bg-secondary text-primary placeholder-muted-foreground border-accent"
         />
-        <Button variant="pink">
+        <Button variant="outline" className="border-accent text-accent hover:bg-accent hover:text-primary">
           <Search className="h-4 w-4 mr-2" />
           Search
         </Button>
       </div>
-      {error && <p className="text-red-500">Error: {error.message}</p>}
+      {error && <p className="text-destructive mb-4">Error: {error.message}</p>}
       <StoryList stories={filteredStories} isLoading={isLoading} />
     </div>
   );

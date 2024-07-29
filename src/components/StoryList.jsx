@@ -1,4 +1,4 @@
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, ChevronUp } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
 
@@ -8,10 +8,10 @@ const StoryList = ({ stories, isLoading }) => {
       <div className="space-y-4">
         {[...Array(10)].map((_, index) => (
           <div key={index} className="flex items-center space-x-4">
-            <Skeleton className="h-4 w-4" />
+            <Skeleton className="h-4 w-4 bg-secondary" />
             <div className="space-y-2">
-              <Skeleton className="h-4 w-[250px]" />
-              <Skeleton className="h-4 w-[200px]" />
+              <Skeleton className="h-4 w-[250px] bg-secondary" />
+              <Skeleton className="h-4 w-[200px] bg-secondary" />
             </div>
           </div>
         ))}
@@ -22,13 +22,17 @@ const StoryList = ({ stories, isLoading }) => {
   return (
     <ul className="space-y-4">
       {stories.map((story) => (
-        <li key={story.objectID} className="border p-4 rounded-md">
-          <h2 className="text-xl font-semibold">{story.title}</h2>
-          <div className="flex items-center justify-between mt-2 text-sm text-gray-600">
-            <span>Upvotes: {story.points}</span>
+        <li key={story.objectID} className="border border-accent p-4 rounded-md bg-card">
+          <h2 className="text-xl font-semibold font-mono text-primary">{story.title}</h2>
+          <div className="flex items-center justify-between mt-2 text-sm text-muted-foreground">
+            <span className="flex items-center">
+              <ChevronUp className="h-4 w-4 mr-1 text-accent" />
+              {story.points}
+            </span>
             <Button
-              variant="pink"
+              variant="outline"
               size="sm"
+              className="border-accent text-accent hover:bg-accent hover:text-primary"
               asChild
             >
               <a
@@ -37,7 +41,7 @@ const StoryList = ({ stories, isLoading }) => {
                 rel="noopener noreferrer"
                 className="flex items-center"
               >
-                Read more
+                Hack
                 <ExternalLink className="h-4 w-4 ml-1" />
               </a>
             </Button>
