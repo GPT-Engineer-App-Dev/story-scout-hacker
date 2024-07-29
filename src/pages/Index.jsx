@@ -4,6 +4,7 @@ import { Search, Terminal } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import StoryList from '../components/StoryList';
+import ArticlePreview from '../components/ArticlePreview';
 
 const fetchTopStories = async () => {
   const response = await fetch('https://hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=100');
@@ -15,11 +16,20 @@ const fetchTopStories = async () => {
 
 const Index = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedStory, setSelectedStory] = useState(null);
   const { data, isLoading, error } = useQuery({ queryKey: ['topStories'], queryFn: fetchTopStories });
 
   const filteredStories = data?.hits.filter(story =>
     story.title.toLowerCase().includes(searchTerm.toLowerCase())
   ) || [];
+
+  const handlePreview = (story) => {
+    setSelectedStory(story);
+  };
+
+  const handleClosePreview = () => {
+    setSelectedStory(null);
+  };
 
   return (
     <div className="container mx-auto px-4 py-8 bg-background text-foreground">
@@ -41,7 +51,10 @@ const Index = () => {
         </Button>
       </div>
       {error && <p className="text-destructive mb-4">Error: {error.message}</p>}
-      <StoryList stories={filteredStories} isLoading={isLoading} />
+      <StoryList stories={filteredStories} isLoading={isLoading} onPreview={handlePreview} />
+      {selectedStory && (
+        <ArticlePreview url={selectedStory.url} onClose={handleClosePreview} />
+      )}
     </div>
   );
 };

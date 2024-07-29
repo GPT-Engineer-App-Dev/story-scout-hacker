@@ -1,8 +1,8 @@
-import { ExternalLink, ChevronUp } from 'lucide-react';
+import { ExternalLink, ChevronUp, Eye } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
 
-const StoryList = ({ stories, isLoading }) => {
+const StoryList = ({ stories, isLoading, onPreview }) => {
   if (isLoading) {
     return (
       <div className="space-y-4">
@@ -29,22 +29,33 @@ const StoryList = ({ stories, isLoading }) => {
               <ChevronUp className="h-4 w-4 mr-1 text-accent" />
               {story.points}
             </span>
-            <Button
-              variant="outline"
-              size="sm"
-              className="border-accent text-accent hover:bg-accent hover:text-primary"
-              asChild
-            >
-              <a
-                href={story.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center"
+            <div className="space-x-2">
+              <Button
+                variant="outline"
+                size="sm"
+                className="border-accent text-accent hover:bg-accent hover:text-primary"
+                onClick={() => onPreview(story)}
               >
-                Hack
-                <ExternalLink className="h-4 w-4 ml-1" />
-              </a>
-            </Button>
+                <Eye className="h-4 w-4 mr-1" />
+                Preview
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                className="border-accent text-accent hover:bg-accent hover:text-primary"
+                asChild
+              >
+                <a
+                  href={story.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center"
+                >
+                  Hack
+                  <ExternalLink className="h-4 w-4 ml-1" />
+                </a>
+              </Button>
+            </div>
           </div>
         </li>
       ))}
