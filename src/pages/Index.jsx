@@ -22,7 +22,7 @@ const Index = () => {
   ) || [];
 
   return (
-    <>
+    <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-6">Hacker News Top 100</h1>
       <div className="flex mb-4">
         <Input
@@ -32,7 +32,7 @@ const Index = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="mr-2"
         />
-        <Button variant="default">
+        <Button variant="pink">
           <Search className="h-4 w-4 mr-2" />
           Search
         </Button>
