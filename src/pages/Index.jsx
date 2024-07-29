@@ -32,7 +32,7 @@ const Index = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="mr-2"
         />
-        <Button variant="outline">
+        <Button variant="pink">
           <Search className="h-4 w-4 mr-2" />
           Search
         </Button>
