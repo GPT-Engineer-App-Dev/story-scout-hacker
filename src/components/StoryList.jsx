@@ -27,7 +27,7 @@ const StoryList = ({ stories, isLoading }) => {
           <div className="flex items-center justify-between mt-2 text-sm text-gray-600">
             <span>Upvotes: {story.points}</span>
             <Button
-              variant="outline"
+              variant="pink"
               size="sm"
               asChild
             >
