@@ -1,5 +1,6 @@
 import { ExternalLink } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Button } from '@/components/ui/button';
 
 const StoryList = ({ stories, isLoading }) => {
   if (isLoading) {
@@ -23,17 +24,23 @@ const StoryList = ({ stories, isLoading }) => {
       {stories.map((story) => (
         <li key={story.objectID} className="border p-4 rounded-md">
           <h2 className="text-xl font-semibold">{story.title}</h2>
-          <div className="flex items-center mt-2 text-sm text-gray-600">
-            <span className="mr-4">Upvotes: {story.points}</span>
-            <a
-              href={story.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center text-blue-500 hover:underline"
+          <div className="flex items-center justify-between mt-2 text-sm text-gray-600">
+            <span>Upvotes: {story.points}</span>
+            <Button
+              variant="outline"
+              size="sm"
+              asChild
             >
-              Read more
-              <ExternalLink className="h-4 w-4 ml-1" />
-            </a>
+              <a
+                href={story.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center"
+              >
+                Read more
+                <ExternalLink className="h-4 w-4 ml-1" />
+              </a>
+            </Button>
           </div>
         </li>
       ))}
