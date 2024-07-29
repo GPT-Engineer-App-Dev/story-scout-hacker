@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { navItems } from "./nav-items";
 import Navbar from "./components/Navbar";
+import LandingPage from "./pages/LandingPage";
 
 const queryClient = new QueryClient();
 
@@ -12,14 +13,24 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <BrowserRouter>
-        <Navbar />
-        <main className="pt-16"> {/* Add padding to account for fixed navbar */}
-          <Routes>
-            {navItems.map(({ to, page }) => (
-              <Route key={to} path={to} element={page} />
-            ))}
-          </Routes>
-        </main>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route
+            path="/app/*"
+            element={
+              <>
+                <Navbar />
+                <main className="pt-16">
+                  <Routes>
+                    {navItems.map(({ to, page }) => (
+                      <Route key={to} path={to} element={page} />
+                    ))}
+                  </Routes>
+                </main>
+              </>
+            }
+          />
+        </Routes>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
