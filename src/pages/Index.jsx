@@ -45,7 +45,7 @@ const Index = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="mr-2 bg-secondary text-primary placeholder-muted-foreground border-accent"
         />
-        <Button variant="outline" className="border-accent text-accent hover:bg-accent hover:text-primary">
+        <Button className="bg-pink-500 text-white hover:bg-pink-600">
           <Search className="h-4 w-4 mr-2" />
           Search
         </Button>
